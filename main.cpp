@@ -4,11 +4,12 @@
 #include "SeleccionDirecta.h"
 #include "InsercionDirecta.h"
 #include "ShellSort.h"
+#include "ShakerSoft.h"
 
 
 int main(int argc, char const *argv[])
 {
-	int length = 50; 
+	int length = 90000; 
 	short array[length];
 
 
@@ -18,11 +19,10 @@ int main(int argc, char const *argv[])
     cout << "enter para empezar test..." ;
     cin.get();
     cout << "==================" << endl;
-	generar(array,length,32767); 
+	generar(array,length,10);   //32767
 	keepFor(array,length);
 
-	imprimir(array,length);
-
+	shaker(array,length);
 	burbuja(array,length);
 	burbuja2(array,length);
 	metodoShell(array,length);

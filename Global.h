@@ -61,12 +61,12 @@ int verificar(short array[], int length){
 	int w;
 	bool bandera = true;
 
-	for (int p = w; p < length && bandera; ++p)
+	for (int p = 0; p < length && bandera; ++p)
 	{
 		bandera = false;
 		for (int i = 0; i < length; ++i)
 		{	
-			if (array[p] == keepData[i])
+			if (array[p] == keepData[i] )
 			{
 				bandera = true;
 				array[p] = -1999;  // deberia ser  NULL ? 
