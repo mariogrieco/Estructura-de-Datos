@@ -53,11 +53,33 @@ int verificar(short array[], int length){
 	{
 		if ( array[i] > array[i+1] )
 		{
-			cout << "quedo mal :(" << endl;
+			cout << "quedo mal NO SE ORDENO :(" << endl;
 			return 0;
 		}
 	}
-	cout << "quedo bien!" << endl;
+	
+	int w;
+	bool bandera = true;
+
+	for (int p = w; p < length && bandera; ++p)
+	{
+		bandera = false;
+		for (int i = 0; i < length; ++i)
+		{	
+			if (array[p] == keepData[i])
+			{
+				bandera = true;
+			}
+		}
+		w++;
+	}
+
+	if ( bandera )
+	{
+		cout << "quedo bien!" << endl;
+	}else{
+		cout << "SE MODIFICO EL ARRAY!" << endl;
+	}
 }
 
 
