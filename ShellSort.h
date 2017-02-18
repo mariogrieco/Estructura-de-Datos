@@ -34,10 +34,12 @@ void metodoShell(short array[], int length){
 		}
 		end = clock();
 	cout << "metodoShell terminado..." << endl;
-	imprimir(array,length);
-	verificar(array,length);
 	getUsedTime();
+	imprimir(array,length);
+	cout << "verificando..." << endl;
+	verificar(array,length);
 	restart(array,keepData,length);
+		cout << "========================="<<endl;
 }
 
 #endif

@@ -4,7 +4,7 @@
 
 		void shaker(short[], int);
 
-void shaker(short a[], int length){
+void shaker(short array[], int length){
 
 	init = clock();
 	int limS = length-1;
@@ -14,32 +14,34 @@ void shaker(short a[], int length){
 	{
 		for (int i = limI; i < limS; i++)
 		{
-		    if ( a[i] > a[i+1] )
+		    if ( array[i] > array[i+1] )
 			{
-				swap = a[i];
-				a[i] = a[i+1];
-				a[i+1] = swap;
+				swap = array[i];
+				array[i] = array[i+1];
+				array[i+1] = swap;
 			}
 		}
 		limS--;
     	for (int i = limS; i > limI; i--)
 		{
-			if ( a[i] < a[i-1] )
+			if ( array[i] < array[i-1] )
 			{
-				swap = a[i];
-				a[i] = a[i-1];
-				a[i-1] = swap;
+				swap = array[i];
+				array[i] = array[i-1];
+				array[i-1] = swap;
 			}
 		}
 		limI++;
 
 	} while (limS - limI > 0);
 	end = clock();
-	imprimir(a,length);
-	verificar(a,length);
+	cout << "metodo shaker terminado..." << endl;
 	getUsedTime();
-	restart(a,keepData,length);
-
+	imprimir(array,length);
+	cout << "verificando..." << endl;
+	verificar(array,length);
+	restart(array,keepData,length);
+		cout << "========================="<<endl;
 }
 
 

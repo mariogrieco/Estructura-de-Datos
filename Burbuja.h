@@ -28,10 +28,12 @@ void burbuja2(short array[], int length){
 	}
 	end = clock();
 	cout << "Burbuja2 terminado..." << endl;
-	imprimir(array,length);
-	verificar(array,length);
 	getUsedTime();
+	imprimir(array,length);
+	cout << "verificando..." << endl;
+	verificar(array,length);
 	restart(array,keepData,length);
+		cout << "========================="<<endl;
 
 }
 
@@ -52,10 +54,12 @@ void burbuja(short array[], int length){
 	}
 	end = clock();
 	cout << "Burbuja terminado..." << endl;
-	imprimir(array,length);
-	verificar(array,length);
 	getUsedTime();
+	imprimir(array,length);
+	cout << "verificando..." << endl;
+	verificar(array,length);
 	restart(array,keepData,length);
+		cout << "========================="<<endl;
 }
 
 #endif
