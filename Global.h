@@ -78,7 +78,7 @@ void imprimir(short array[], int length){
 
 void getUsedTime(){
 	cout << "El Tiempo de ejecucion fue de:  ";
-	cout << (((short(end-init))/CLOCKS_PER_SEC)*1000) << "ms" << endl;
+	cout << (((double(end-init))/CLOCKS_PER_SEC)*1000) << "ms" << endl;
 	cout << "========================="<<endl;
 }
 

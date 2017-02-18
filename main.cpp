@@ -8,7 +8,7 @@
 
 int main(int argc, char const *argv[])
 {
-	int length = 1000000; 
+	int length = 30000; 
 	short array[length];
 
 
