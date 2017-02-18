@@ -69,7 +69,7 @@ int verificar(short array[], int length){
 			if (array[p] == keepData[i])
 			{
 				bandera = true;
-				array[p] = -10000;
+				array[p] = -1999;  // deberia ser  NULL ? 
 			}
 		}
 		w++;
@@ -81,6 +81,7 @@ int verificar(short array[], int length){
 	}else{
 		cout << "SE MODIFICO EL ARRAY!" << endl;
 	}
+    restart(array,keepData,length);
 }
 
 
