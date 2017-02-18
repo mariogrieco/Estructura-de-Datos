@@ -69,6 +69,7 @@ int verificar(short array[], int length){
 			if (array[p] == keepData[i])
 			{
 				bandera = true;
+				array[p] = -10000;
 			}
 		}
 		w++;
