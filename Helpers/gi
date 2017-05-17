@@ -1,0 +1,257 @@
+#include "string"
+#include "iostream"
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
+#include <math.h>
+#include "fstream"
+
+
+/*
+
+
+  tolower  caracter a su entero
+  atoi( )  cadena a int
+  isdigit  determina para caracter
+  strcpy() NO guarda en punteros, pero si de ellos
+           Cadenas de caracteres sin problemas
+
+
+    puedo sumar el ascii de cada caracter con tolower(), toUpper() y/o castiando
+    UN string.c_str()[n] o un *char o un char[] A ENTERO.
+
+
+    para sumar cada string[n], usar un string aux vacio y llenar alternadamente con push_back
+    usar c_str()
+
+
+    string
+    http://www.cplusplus.com/reference/string/string/
+      .append()
+      .push_back()
+      .c_str()   necesario para usar funciones viejas TODAS CREO !
+      .replace()
+      .size()
+      .resize()
+      .clear()
+      .shrink_to_fit()
+      .swap()
+      .pop_back()
+      .copy()
+      .find()
+
+
+       NO PEDO PASAR STRING CON strcpy, usar metodos nuevos!, para atras si ps...
+
+      ARCHIVOS!!!!
+
+      mescla directa
+        NOTA AREGEO BLOQUES DE 2^N Y AL COMPARAR ES (2^N)*2 CADA UNO EN CADA FILA
+
+*/
+
+
+using namespace std;
+
+
+
+
+
+
+void mesclar(int bloques,int contador1,int contador2){
+
+  string bufer = "";
+  string bufer2 = "";
+  bool b1 = true;
+  bool b2 = true;
+  int b = 0;
+  int a = 0;
+
+  fstream F1("F1.TEMP",ios::in);
+  fstream F2("F2.TEMP",ios::in);
+  fstream RAIZ("nombres.txt",ios::out);
+
+  if ( F1.fail() || F2.fail() || RAIZ.fail() ) {
+    cout << "error" << endl;
+    exit(0);
+  }
+
+  RAIZ.clear();
+  RAIZ.seekg(0,ios::beg);
+  F1.clear();
+  F1.seekg(0,ios::beg);
+  F2.clear();
+  F2.seekg(0,ios::beg);
+
+    a:
+
+      while (  contador1 > 0 && contador2 > 0 && a < bloques && b < bloques ) {
+
+        if ( b1 ) {
+          F1 >> bufer;
+          b1 = false;
+          contador1--;
+        }
+
+        if ( b2 ) {
+          F2 >> bufer2;
+          b2 = false;
+          contador2--;
+        }
+                if ( atoi(bufer.c_str()) < atoi(bufer2.c_str())) {
+                   RAIZ << bufer << endl;
+                   b1 = true;
+                   b2 = false;
+                   a++;
+
+                }
+                else{
+                  RAIZ << bufer2 << endl;
+                  b2 = true;
+                  b1 = false;
+                  b++;
+                }
+        }
+
+        if ( b1 == false ) {
+           RAIZ << bufer << endl;
+           a++;
+           while ( a < bloques && contador1 > 0 ) {
+             a++;
+             F1 >> bufer;
+             contador1--;
+             RAIZ << bufer << endl;
+           }
+           a = 0;
+        }
+        if ( b2 == false ) {
+           RAIZ << bufer2 << endl;
+           b++;
+           while ( b < bloques && contador2 > 0 ) {
+             b++;
+             F2 >> bufer2;
+             contador2--;
+             RAIZ << bufer2 << endl;
+           }
+           b = 0;
+        }
+
+        if (  contador1 > 0 && contador2 > 0 ) {
+            a = 0;
+            b = 0;
+            b1 = true;
+            b2 = true;
+            goto a;
+        }
+
+        while ( contador2 > 0 ) {
+          b++;
+          F2 >> bufer2;
+          contador2--;
+          RAIZ << bufer2 << endl;
+        }
+        while ( contador1 > 0 ) {
+          a++;
+          F1 >> bufer;
+          contador1--;
+          RAIZ << bufer << endl;
+        }
+
+  RAIZ.close();
+  F1.close();
+  F2.close();
+
+}
+
+
+void separar(int bloques){
+  int last = bloques;
+  int contador1 = 0;
+  int contador2 = 0;
+
+  fstream F1("F1.TEMP",ios::out);
+  fstream F2("F2.TEMP",ios::out);
+
+  fstream RAIZ("nombres.txt",ios::in);
+
+  if ( RAIZ.fail() || F1.fail() || F2.fail() ) {
+    cout << "error" << endl;
+    exit(0);
+  }
+
+  F1.clear();
+  F2.clear();
+  RAIZ.clear();
+  RAIZ.seekg(0,ios::beg);
+  F1.seekg(0,ios::beg);
+  F2.seekg(0,ios::beg);
+
+  string name = "";
+  bool band = true;
+
+    while (true) {
+        RAIZ >> name;
+
+            if ( !RAIZ.eof() ){
+              if ( bloques == 0 ) {
+                  band = !band;
+                  bloques = last;
+              }
+              if ( band ) {
+                  F1 << name << "\n";
+                  contador1++;
+              }
+              else{
+                  F2 << name << "\n";
+                  contador2++;
+              }
+              bloques-=1;
+          }
+          else
+          {
+             break;
+          }
+      }
+      RAIZ.close();
+      F1.close();
+      F2.close();
+
+      if ( last < (contador1+contador2) ) {
+        mesclar(last,contador1,contador2);
+        separar(last*2);
+      }
+}
+
+
+// helepers
+
+
+// helepers
+
+
+
+
+// Clase
+
+//end clase
+template <class T>
+void imprimir(T m,int filas,int columnas = 0){
+    for (int i = 0; i < filas; i++) {
+        cout << m[i] << " ";
+    }
+    cout << enld;
+}
+
+
+int main(int argc, char const *argv[]) {
+
+
+  int a[] = {1,9,8,7,6,5,10,3,2,1};
+
+  radixsort(a,10);
+  for (int i = 0; i < 10; i++) {
+     cout << a[i] << " ";
+  }
+  cout << "done" << endl;
+  return 0;
+}
