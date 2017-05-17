@@ -9,3 +9,8 @@
     Selecion  (Selection sort) | O(n^2)                          | ( n^2 - n )/2
     SHELL     (SHELL sort)     | O(n^1.25)  mejor caso           | ( n^2 - n )/2 ( intercalado mayor y menor [menor-n, mayor-n...] )
     Burbuja Bidireccional (Shaker Sort)     | O(n^2)             | ( n^2 - n )/2
+
+
+     Jum Search - O(√n) 
+     Sequential Search - O(n)
+     Binary Search - O(log n)
